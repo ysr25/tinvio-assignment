@@ -1,25 +1,53 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import User from './User';
+import Posts from './Posts';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: 1,
+      user: {},
+      posts: {},
+      isLoading: true
+    }
+  }
+
+  fetchUser = () => {
+    return axios.get(`https://jsonplaceholder.typicode.com/users/${this.state.id}`);
+  }
+
+  fetchPosts = () => {
+    return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${this.state.id}`)
+  }
+
+  componentDidMount() {
+    Promise.all([this.fetchUser(), this.fetchPosts()])
+      .then(res => this.setState({ user: res[0].data, posts: res[1].data, isLoading: false }));
+  }
+
+  getFirstName = (name) => {
+    return name.split(' ')[0];
+  }
+
+  render() {
+    let content = "Loading..."
+
+    if (!this.state.isLoading) {
+      content = <>
+        <User user={this.state.user} /> 
+        <Posts name={this.getFirstName(this.state.user.name)} posts={this.state.posts} />
+      </>
+    }
+
+    return (
+      <div className="App">
+        {content}
+      </div>
+    );
+  }
 }
 
 export default App;
