@@ -4,6 +4,8 @@ import User from './User';
 import Posts from './Posts';
 import axios from 'axios';
 
+import loading from './images/loading.gif';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,7 @@ class App extends React.Component {
   }
 
   render() {
-    let content = "Loading..."
+    let content = <img style={{marginTop: 30}} src={loading} alt="Loading..." />
 
     if (!this.state.isLoading) {
       content = <>
