@@ -8,6 +8,7 @@
 * Show Leanne Graham's user details and posts
 * Use React in your implementation
 * Add a visual loader when your data is loading
+* Add UI to allow us to switch between users in the list
 * Mobile responsiveness
 
 # Time spent

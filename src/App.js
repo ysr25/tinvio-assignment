@@ -1,46 +1,58 @@
 import React from 'react';
+import axios from 'axios';
 import './App.css';
 import User from './User';
 import Posts from './Posts';
-import axios from 'axios';
+import SwitchUser from './SwitchUser';
 
-import loading from './images/loading.gif';
+import loadingImg from './images/loading.gif';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       id: 1,
-      user: {},
+      users: {},
       posts: {},
       isLoading: true
     }
   }
 
-  fetchUser = () => {
-    return axios.get(`https://jsonplaceholder.typicode.com/users/${this.state.id}`);
+  fetchUsers = () => {
+    return axios.get(`https://jsonplaceholder.typicode.com/users/`);
   }
 
-  fetchPosts = () => {
-    return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${this.state.id}`)
+  fetchPosts = (id) => {
+    return axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${id}`)
   }
 
   componentDidMount() {
-    Promise.all([this.fetchUser(), this.fetchPosts()])
-      .then(res => this.setState({ user: res[0].data, posts: res[1].data, isLoading: false }));
+    Promise.all([this.fetchUsers(), this.fetchPosts(this.state.id)])
+      .then(res => this.setState({ users: res[0].data, posts: res[1].data, isLoading: false }));
   }
 
-  getFirstName = (name) => {
-    return name.split(' ')[0];
+  selectUser = (e) => {
+    this.setState({ id: e.target.value, isLoading: true });
+
+    Promise.all([this.fetchPosts(e.target.value)])
+      .then(res => this.setState({ posts: res[0].data, isLoading: false }));
   }
 
   render() {
-    let content = <img style={{marginTop: 30}} src={loading} alt="Loading..." />
+    let content = <div className="center">
+        <img style={{marginTop: 30}} src={loadingImg} alt="Loading..." />
+      </div>
 
     if (!this.state.isLoading) {
-      content = <>
-        <User user={this.state.user} /> 
-        <Posts name={this.getFirstName(this.state.user.name)} posts={this.state.posts} />
+      const user = this.state.users[this.state.id - 1];
+
+      content = <><div className="SwitchUser center">
+          <SwitchUser id={this.state.id} users={this.state.users} onClick={this.selectUser} />
+        </div>
+        <div className="Main">
+          <User user={user} />
+          <Posts name={user.name} posts={this.state.posts} />
+        </div>
       </>
     }
 
