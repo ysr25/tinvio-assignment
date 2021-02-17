@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/tinvio-assignment/static/css/main.facc755f.chunk.css",
+    "main.js": "/tinvio-assignment/static/js/main.b072bdf3.chunk.js",
+    "main.js.map": "/tinvio-assignment/static/js/main.b072bdf3.chunk.js.map",
+    "runtime-main.js": "/tinvio-assignment/static/js/runtime-main.0a5adb9a.js",
+    "runtime-main.js.map": "/tinvio-assignment/static/js/runtime-main.0a5adb9a.js.map",
+    "static/js/2.e8312315.chunk.js": "/tinvio-assignment/static/js/2.e8312315.chunk.js",
+    "static/js/2.e8312315.chunk.js.map": "/tinvio-assignment/static/js/2.e8312315.chunk.js.map",
+    "static/js/3.44ee33e1.chunk.js": "/tinvio-assignment/static/js/3.44ee33e1.chunk.js",
+    "static/js/3.44ee33e1.chunk.js.map": "/tinvio-assignment/static/js/3.44ee33e1.chunk.js.map",
+    "index.html": "/tinvio-assignment/index.html",
+    "static/css/main.facc755f.chunk.css.map": "/tinvio-assignment/static/css/main.facc755f.chunk.css.map",
+    "static/js/2.e8312315.chunk.js.LICENSE.txt": "/tinvio-assignment/static/js/2.e8312315.chunk.js.LICENSE.txt",
+    "static/media/icon-24-shop.0fd1287d.svg": "/tinvio-assignment/static/media/icon-24-shop.0fd1287d.svg",
+    "static/media/image-cropped.6d478585.jpg": "/tinvio-assignment/static/media/image-cropped.6d478585.jpg",
+    "static/media/phone.b6940060.svg": "/tinvio-assignment/static/media/phone.b6940060.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0a5adb9a.js",
+    "static/js/2.e8312315.chunk.js",
+    "static/css/main.facc755f.chunk.css",
+    "static/js/main.b072bdf3.chunk.js"
+  ]
+}
